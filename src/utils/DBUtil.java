@@ -16,8 +16,9 @@ public class DBUtil {
 
     private static EntityManagerFactory getEntityManagerFactory() {
         if(emf == null) {
-            Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+            emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         }
+
         return emf;
     }
 }

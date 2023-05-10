@@ -7,13 +7,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-
 
 //DTOクラス。@Column()がSQLの設定に相当する？
 //アノテーション, persistance.xmlに追加するとエラーが起こらなくなる。今回は
 @Entity
-@Table(name = "message")
+//queryの文をgetAllMessagesと名付けた。m = *と同じ
+@NamedQueries({
+    @NamedQuery(
+                name = "getAllMessages",
+                query = "SELECT m FROM Message AS m ORDER BY m.id DESC"
+            )
+})
+
+@Table(name = "messages")
 public class Message {
 
     //メッセージID
@@ -78,3 +87,4 @@ public class Message {
         this.updated_at = updated_at;
     }
 }
+
